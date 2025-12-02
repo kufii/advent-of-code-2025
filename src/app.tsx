@@ -1,5 +1,5 @@
 import { MetaProvider, Title } from '@solidjs/meta'
-import { Route, Router } from '@solidjs/router'
+import { Route, HashRouter } from '@solidjs/router'
 import { createSignal, Suspense } from 'solid-js'
 import Home from './routes'
 import Day, { filters as dayFilters } from './routes/day'
@@ -11,7 +11,7 @@ import Navigation from './components/Navigation'
 export default function App() {
   const [menuOpen, setMenuOpen] = createSignal(false)
   return (
-    <Router
+    <HashRouter
       root={(props) => (
         <MetaProvider>
           <Title>Advent of Code 2025</Title>
@@ -22,13 +22,9 @@ export default function App() {
         </MetaProvider>
       )}
     >
-      <Route path={import.meta.env.BASE_URL} component={Home} />
-      <Route
-        path={`${import.meta.env.BASE_URL}day/:id`}
-        component={Day}
-        matchFilters={dayFilters}
-      />
+      <Route path='/' component={Home} />
+      <Route path='/day/:id' component={Day} matchFilters={dayFilters} />
       <Route path='*404' component={NotFound} />
-    </Router>
+    </HashRouter>
   )
 }
