@@ -44,9 +44,11 @@ export default function Navigation(props: Props) {
         >
           <FiMenu size={24} />
         </button>
-        <A class='nav-title' href='/'>
-          advent of code 2025
-        </A>
+        <span>
+          <A class='nav-title' href='/'>
+            advent of code 2025
+          </A>
+        </span>
         <a
           class='nav-btn'
           href='https://github.com/kufii/advent-of-code-2025'
