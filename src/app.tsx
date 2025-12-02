@@ -22,8 +22,12 @@ export default function App() {
         </MetaProvider>
       )}
     >
-      <Route path='/' component={Home} />
-      <Route path='/day/:id' component={Day} matchFilters={dayFilters} />
+      <Route path={import.meta.env.BASE_URL} component={Home} />
+      <Route
+        path={`${import.meta.env.BASE_URL}day/:id`}
+        component={Day}
+        matchFilters={dayFilters}
+      />
       <Route path='*404' component={NotFound} />
     </Router>
   )

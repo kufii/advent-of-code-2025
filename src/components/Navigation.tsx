@@ -43,7 +43,7 @@ export default function Navigation(props: Props) {
         >
           <FiMenu size={24} />
         </button>
-        <A class='nav-title' href='/'>
+        <A class='nav-title' href={import.meta.env.BASE_URL}>
           advent of code 2025
         </A>
         <button type='button' class='nav-btn' />
@@ -64,7 +64,10 @@ export default function Navigation(props: Props) {
             <For each={range(1, 12)}>
               {(day) => (
                 <li>
-                  <A href={`/day/${day}`} activeClass='active'>
+                  <A
+                    href={`${import.meta.env.BASE_URL}day/${day}`}
+                    activeClass='active'
+                  >
                     Day {day}
                   </A>
                 </li>

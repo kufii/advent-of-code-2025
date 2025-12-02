@@ -49,14 +49,14 @@ export default function Day() {
           )}
           <div class='btn-container nav-btns'>
             <A
-              href={`/day/${day() - 1}`}
+              href={`${import.meta.env.BASE_URL}day/${day() - 1}`}
               class='btn btn-plain'
               aria-disabled={day() <= 1}
             >
               ← Previous Day
             </A>
             <A
-              href={`/day/${day() + 1}`}
+              href={`${import.meta.env.BASE_URL}day/${day() + 1}`}
               class='btn btn-plain'
               aria-disabled={day() >= 12}
             >
