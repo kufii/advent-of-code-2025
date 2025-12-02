@@ -3,6 +3,7 @@ import { FiMenu } from 'solid-icons/fi'
 import './Navigation.css'
 import { range } from '../util'
 import { A } from '@solidjs/router'
+import { AiFillGithub } from 'solid-icons/ai'
 
 interface Props {
   menuOpen: Accessor<boolean>
@@ -46,7 +47,15 @@ export default function Navigation(props: Props) {
         <A class='nav-title' href='/'>
           advent of code 2025
         </A>
-        <button type='button' class='nav-btn' />
+        <a
+          class='nav-btn'
+          href='https://github.com/kufii/advent-of-code-2025'
+          rel='noopener noreferrer'
+          target='_blank'
+          aria-label='View source on GitHub'
+        >
+          <AiFillGithub size={24} />
+        </a>
       </header>
       <div
         id='nav-menu'
