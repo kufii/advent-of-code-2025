@@ -14,6 +14,9 @@ export default function Day() {
   const [part, setPart] = createSignal(0)
   createEffect(() => {
     void params.id
+    if (document.activeElement?.ariaDisabled === 'true') {
+      ;(document.activeElement as HTMLElement).blur()
+    }
     setPart(0)
   })
   const day = createMemo(() => Number(params.id))
@@ -52,6 +55,7 @@ export default function Day() {
               href={`/day/${day() - 1}`}
               class='btn btn-plain'
               aria-disabled={day() <= 1}
+              tabIndex={day() <= 1 ? -1 : undefined}
             >
               ← Previous Day
             </A>
@@ -59,6 +63,7 @@ export default function Day() {
               href={`/day/${day() + 1}`}
               class='btn btn-plain'
               aria-disabled={day() >= 12}
+              tabIndex={day() >= 12 ? -1 : undefined}
             >
               Next Day →
             </A>
