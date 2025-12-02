@@ -73,7 +73,11 @@ export default function Navigation(props: Props) {
             <For each={range(1, 12)}>
               {(day) => (
                 <li>
-                  <A href={`/day/${day}`} activeClass='active'>
+                  <A
+                    href={`/day/${day}`}
+                    activeClass='active'
+                    onClick={() => props.setMenuOpen(false)}
+                  >
                     Day {day}
                   </A>
                 </li>
