@@ -1,0 +1,125 @@
+.nav {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  align-items: center;
+  height: 3.5rem;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-front);
+}
+
+.nav-title,
+.nav-title:visited {
+  color: var(--color-text-on-primary);
+  text-decoration: none;
+  font-size: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  padding-inline: 0.5rem;
+}
+
+.nav-btn {
+  color: var(--color-text-on-primary);
+  background: hsla(0, 0%, 100%, 0);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  height: 100%;
+  padding: 1rem;
+  place-items: center;
+}
+
+.nav-btn:active,
+.nav-btn:hover,
+.nav-btn:focus-visible {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.nav-skip {
+  overflow: hidden;
+  padding: 0;
+  transition:
+    padding 0.1s,
+    width 0.3s 0.1s;
+  white-space: nowrap;
+  width: 0;
+}
+
+.nav-skip:focus {
+  padding: 1rem;
+  width: auto;
+}
+
+.nav-menu-btn path {
+  transform-origin: center;
+  transition: all 0.15s ease-in;
+}
+
+.nav-menu-btn[aria-expanded='true'] path:first-child {
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+.nav-menu-btn[aria-expanded='true'] path:nth-child(2) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.nav-menu-btn[aria-expanded='true'] path:last-child {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+.nav-menu.open {
+  background-color: rgba(0, 0, 0, 0.4);
+  right: 0;
+  user-select: all;
+}
+
+.nav-menu nav,
+.nav-menu.open {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 3.5rem;
+  z-index: var(--z-index-overlay);
+}
+
+.nav-menu.open nav {
+  transform: translateX(0);
+}
+
+.nav-menu nav {
+  background-color: #fff;
+  max-width: 80%;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: all 0.2s ease;
+  user-select: none;
+  width: 20rem;
+}
+
+.nav-menu ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: #000;
+  display: block;
+  font-weight: var(--font-weight-bold);
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  width: 100%;
+}
+
+.nav-menu a:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.nav-menu a.active {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-primary);
+}

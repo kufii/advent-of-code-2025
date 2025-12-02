@@ -1,0 +1,19 @@
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-block: 1rem;
+}
+
+.output {
+  border: 0.1rem solid var(--color-primary);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0.8rem;
+}
+
+.nav-btns {
+  justify-content: center;
+}

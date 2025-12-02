@@ -1,0 +1,75 @@
+:root {
+  --color-bg: #222831;
+  --color-primary: #00adb5;
+  --color-primary-dark: #0a8b91;
+  --color-text: #ccc;
+  --color-text-bright: #fff;
+  --color-text-on-primary: #fff;
+  --font: 'source-code-pro', monospace;
+  --font-weight: 400;
+  --font-weight-bold: 700;
+  --border-radius: 0.4rem;
+  --z-index-front: 10;
+  --z-index-overlay: 20;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-weight: var(--font-weight);
+}
+
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-bright);
+  text-shadow: 0 0 5px currentColor;
+}
+
+.main {
+  margin: auto;
+  max-width: 100ch;
+  padding: 1rem;
+}
+
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+.btn {
+  align-items: center;
+  background: none;
+  border: 0.1em solid var(--color-primary);
+  border-radius: 2rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-family);
+  font-size: clamp(0.9rem, 0.7rem + 1vw, 1.1rem);
+  font-weight: var(--font-weight-bold);
+  gap: 0.5rem;
+  line-height: 1;
+  padding: 0.4em 0.8em;
+  text-decoration: none;
+}
+
+.btn:not([disabled]):hover,
+.btn:not([disabled]):focus-visible {
+  filter: brightness(150%);
+}
+
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+.btn-plain {
+  border: none;
+}
+
+.btn-compact {
+  border: none;
+  padding: 0;
+}
