@@ -79,6 +79,7 @@ export default function Navigation(props: Props) {
                     href={`/day/${day}`}
                     activeClass='active'
                     onClick={() => props.setMenuOpen(false)}
+                    tabIndex={props.menuOpen() ? undefined : -1}
                   >
                     Day {day}
                   </A>
