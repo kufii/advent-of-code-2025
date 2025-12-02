@@ -1,7 +1,7 @@
 import { Accessor, For, Setter } from 'solid-js'
 import { FiMenu } from 'solid-icons/fi'
 import './Navigation.css'
-import { range } from '~/util'
+import { range } from '../util'
 import { A } from '@solidjs/router'
 
 interface Props {

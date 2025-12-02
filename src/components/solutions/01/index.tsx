@@ -1,6 +1,6 @@
-import { mod } from '~/util'
+import { mod } from '../../../util'
 import input from './input'
-import Answer from '~/components/Answer'
+import Answer from '../../Answer'
 
 const parseInput = () =>
   input

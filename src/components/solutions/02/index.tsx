@@ -1,6 +1,6 @@
-import { isEven, sum } from '~/util'
+import { isEven, sum } from '../../../util'
 import input from './input'
-import Answer from '~/components/Answer'
+import Answer from '../../Answer'
 
 const parseInput = () =>
   input

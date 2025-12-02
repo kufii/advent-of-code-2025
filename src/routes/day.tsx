@@ -1,7 +1,7 @@
 import { Title } from '@solidjs/meta'
 import { A, MatchFilters, useParams } from '@solidjs/router'
 import NotFound from './[...404]'
-import days from '~/components/solutions'
+import days from '../components/solutions'
 import { createEffect, createMemo, createSignal, Show } from 'solid-js'
 import './day.css'
 
