@@ -1,4 +1,4 @@
-import { isEven, sum } from '../../../util'
+import { sum } from '../../../util'
 import input from './input'
 import Answer from '../../Answer'
 
@@ -8,24 +8,19 @@ const parseInput = () =>
     .map((x) => x.split('-'))
     .map(([from, to]) => ({ from: Number(from), to: Number(to) }))
 
-const getInvalidIds = (from: number, to: number, checkAllLengths = false) => {
+const getInvalidIds = (
+  from: number,
+  to: number,
+  checkMultipleRepeats = false,
+) => {
   const invalidIds = []
   for (let num = from; num <= to; num++) {
     const str = num.toString()
-    if (!checkAllLengths && !isEven(str.length)) continue
-    for (
-      let chunk = checkAllLengths ? 1 : str.length / 2;
-      chunk <= str.length / 2;
-      chunk++
-    ) {
-      if (str.length % chunk) continue
-      const regex = new RegExp(`.{${chunk}}`, 'gu')
-      const chunks = str.match(regex)!
-      if (chunks.every((n) => n === chunks[0])) {
-        invalidIds.push(num)
-        break
-      }
-    }
+    const regex = new RegExp(
+      `^(\\d+)\\1${checkMultipleRepeats ? '+' : ''}$`,
+      'gu',
+    )
+    if (str.match(regex)) invalidIds.push(num)
   }
   return invalidIds
 }
