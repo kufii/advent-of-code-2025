@@ -1,5 +1,6 @@
 :root {
   --color-bg: #222831;
+  --color-bg-dark: #1a1f24;
   --color-primary: #00adb5;
   --color-primary-dark: #0a8b91;
   --color-text: #ccc;
@@ -7,6 +8,7 @@
   --color-text-on-primary: #fff;
   --font: 'source-code-pro', monospace;
   --font-weight: 400;
+  --font-weight-book: 500;
   --font-weight-bold: 700;
   --border-radius: 0.4rem;
   --z-index-front: 10;

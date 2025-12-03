@@ -3,6 +3,7 @@ import { A, MatchFilters, useParams } from '@solidjs/router'
 import NotFound from './[...404]'
 import days from '../components/solutions'
 import { createEffect, createMemo, createSignal, Show } from 'solid-js'
+import CodeViewer from '../components/CodeViewer'
 import './day.css'
 
 export const filters: MatchFilters = {
@@ -12,12 +13,14 @@ export const filters: MatchFilters = {
 export default function Day() {
   const params = useParams()
   const [part, setPart] = createSignal(0)
+  const [showCode, setShowCode] = createSignal(false)
   createEffect(() => {
     void params.id
     if (document.activeElement?.ariaDisabled === 'true') {
       ;(document.activeElement as HTMLElement).blur()
     }
     setPart(0)
+    setShowCode(false)
   })
   const day = createMemo(() => Number(params.id))
   const solution = createMemo(() => days[day() - 1])
@@ -34,7 +37,17 @@ export default function Day() {
           <button type='button' class='btn' onClick={() => setPart(2)}>
             Part 2
           </button>
+          <button
+            type='button'
+            class='btn btn-plain'
+            onClick={() => setShowCode((prev) => !prev)}
+          >
+            {showCode() ? 'Hide Code' : 'View Code'}
+          </button>
         </div>
+        <Show when={showCode()}>
+          <CodeViewer day={day()} />
+        </Show>
         <Show when={part()}>
           <section class='output'>
             <h2>Part {part()}</h2>
