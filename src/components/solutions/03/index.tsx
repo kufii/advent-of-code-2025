@@ -9,8 +9,8 @@ const getLargestVoltage = (bank: number[], digits: number) => {
   let index = -1
   let number = ''
   for (let n = 0; n < digits; n++) {
-    const current = bank.slice(index + 1)
-    const max = Math.max(...current.slice(0, current.length - digits + n + 1))
+    const current = bank.slice(index + 1, bank.length - digits + n + 1)
+    const max = Math.max(...current)
     index += current.indexOf(max) + 1
     number += max
   }
