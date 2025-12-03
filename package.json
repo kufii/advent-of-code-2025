@@ -6,7 +6,12 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json,css,prettierrc,eslintrc,html,babelrc}\"",
+    "check:format": "prettier --check \"**/*.{js,jsx,ts,tsx,md,json,css,prettierrc,eslintrc,html,babelrc}\"",
+    "check": "npm run type-check && npm run lint && npm run check:format"
   },
   "dependencies": {
     "@solidjs/meta": "^0.29.4",
