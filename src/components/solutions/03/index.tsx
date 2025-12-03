@@ -7,14 +7,14 @@ const parseInput = () =>
 
 const getLargestVoltage = (bank: number[], digits: number) => {
   let index = 0
-  let number = ''
+  let num = ''
   for (let n = 0; n < digits; n++) {
     const current = bank.slice(index, bank.length - digits + n + 1)
     const max = Math.max(...current)
     index += current.indexOf(max) + 1
-    number += max
+    num += max
   }
-  return Number(number)
+  return Number(num)
 }
 
 export function Part1() {
