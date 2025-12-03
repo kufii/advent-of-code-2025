@@ -6,10 +6,10 @@ const parseInput = () =>
   input.split('\n').map((line) => line.split('').map(Number))
 
 const getLargestVoltage = (bank: number[], digits: number) => {
-  let index = -1
+  let index = 0
   let number = ''
   for (let n = 0; n < digits; n++) {
-    const current = bank.slice(index + 1, bank.length - digits + n + 1)
+    const current = bank.slice(index, bank.length - digits + n + 1)
     const max = Math.max(...current)
     index += current.indexOf(max) + 1
     number += max
@@ -17,7 +17,7 @@ const getLargestVoltage = (bank: number[], digits: number) => {
   return Number(number)
 }
 
-export const Part1 = () => {
+export function Part1() {
   const result = parseInput()
     .map((bank) => getLargestVoltage(bank, 2))
     .reduce(sum)
@@ -28,7 +28,7 @@ export const Part1 = () => {
   )
 }
 
-export const Part2 = () => {
+export function Part2() {
   const result = parseInput()
     .map((bank) => getLargestVoltage(bank, 12))
     .reduce(sum)
