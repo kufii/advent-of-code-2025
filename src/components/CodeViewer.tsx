@@ -1,12 +1,11 @@
-/* eslint-disable solid/no-innerhtml */
-import { highlight, languages } from 'prismjs'
+import { highlightElement } from 'prismjs'
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
 import { createEffect, createSignal, DEV, Show } from 'solid-js'
-import 'prism-themes/themes/prism-xonokai.min.css'
-import './CodeViewer.css'
+import 'prismjs/themes/prism-okaidia.min.css'
 import { FiRefreshCw } from 'solid-icons/fi'
+import './CodeViewer.css'
 
 interface Props {
   day: number
@@ -22,6 +21,7 @@ export default function CodeViewer(props: Props) {
       const response = await fetch(getJsDelivrUrl(), { cache: 'no-cache' })
       const text = await response.text()
       setCode(text)
+      setTimeout(() => highlightElement(document.getElementById('code')!), 0)
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Error fetching code:', err)
@@ -61,7 +61,9 @@ export default function CodeViewer(props: Props) {
               </button>
             </div>
           </Show>
-          <code innerHTML={highlight(code(), languages.tsx, 'tsx')} />
+          <code id='code' class='language-tsx'>
+            {code()}
+          </code>
         </pre>
       </Show>
     </div>
