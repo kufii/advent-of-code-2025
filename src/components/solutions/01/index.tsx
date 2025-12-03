@@ -12,16 +12,17 @@ const crackCode = (steps: number[], countPasses = false) => {
   let pos = 50
   let num0 = 0
   for (let num of steps) {
-    if (countPasses) num0 += Math.floor(Math.abs(num) / 100)
-    num = mod(num, num < 0 ? -100 : 100)
-    if (
-      countPasses &&
-      pos > 0 &&
-      ((num > 0 && num + pos >= 100) || (num < 0 && num + pos <= 0))
-    )
-      num0++
+    if (countPasses) {
+      num0 += Math.floor(Math.abs(num) / 100)
+      num = mod(num, num < 0 ? -100 : 100)
+      if (
+        pos > 0 &&
+        ((num > 0 && num + pos > 100) || (num < 0 && num + pos < 0))
+      )
+        num0++
+    }
     pos = mod(pos + num, 100)
-    if (!countPasses && pos === 0) num0++
+    if (pos === 0) num0++
   }
   return num0
 }
