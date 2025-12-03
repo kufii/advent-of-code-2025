@@ -15,7 +15,7 @@ export default function App() {
       root={(props) => (
         <MetaProvider>
           <Title>Advent of Code 2025</Title>
-          <Navigation menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <Navigation menuOpen={menuOpen()} setMenuOpen={setMenuOpen} />
           <main id='main-content' class='main' aria-disabled={menuOpen()}>
             <Suspense>{props.children}</Suspense>
           </main>

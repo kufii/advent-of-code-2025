@@ -1,13 +1,13 @@
-import { Accessor, For, Setter } from 'solid-js'
+import { For } from 'solid-js'
 import { FiMenu } from 'solid-icons/fi'
-import './Navigation.css'
 import { range } from '../util'
 import { A } from '@solidjs/router'
 import { AiFillGithub } from 'solid-icons/ai'
+import './Navigation.css'
 
 interface Props {
-  menuOpen: Accessor<boolean>
-  setMenuOpen: Setter<boolean>
+  menuOpen: boolean
+  setMenuOpen: (next: boolean | ((prev: boolean) => boolean)) => void
 }
 
 export default function Navigation(props: Props) {
@@ -33,13 +33,13 @@ export default function Navigation(props: Props) {
           type='button'
           class='nav-btn nav-menu-btn'
           aria-label={
-            props.menuOpen() ? 'close navigation menu' : 'open navigation menu'
+            props.menuOpen ? 'close navigation menu' : 'open navigation menu'
           }
           onClick={(e) => {
             props.setMenuOpen((prev) => !prev)
             e.stopImmediatePropagation()
           }}
-          aria-expanded={props.menuOpen()}
+          aria-expanded={props.menuOpen}
           aria-controls='nav-menu'
         >
           <FiMenu size={24} />
@@ -63,11 +63,11 @@ export default function Navigation(props: Props) {
         id='nav-menu'
         classList={{
           'nav-menu': true,
-          open: props.menuOpen(),
+          open: props.menuOpen,
         }}
         role='dialog'
         aria-modal='true'
-        aria-hidden={!props.menuOpen()}
+        aria-hidden={!props.menuOpen}
         onClick={() => props.setMenuOpen(false)}
       >
         <nav onClick={(e) => e.stopImmediatePropagation()}>
@@ -79,7 +79,7 @@ export default function Navigation(props: Props) {
                     href={`/day/${day}`}
                     activeClass='active'
                     onClick={() => props.setMenuOpen(false)}
-                    tabIndex={props.menuOpen() ? undefined : -1}
+                    tabIndex={props.menuOpen ? undefined : -1}
                   >
                     Day {day}
                   </A>
