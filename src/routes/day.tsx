@@ -27,22 +27,20 @@ export default function Day() {
       <Title>Advent of Code 2025 - Day {day()}</Title>
       <h1>Day {day()}</h1>
       <Show when={solution()} fallback={<p>Solution not yet implemented.</p>}>
-        <>
-          <div class='btn-container'>
-            <button type='button' class='btn' onClick={() => setPart(1)}>
-              Part 1
-            </button>
-            <button type='button' class='btn' onClick={() => setPart(2)}>
-              Part 2
-            </button>
-          </div>
-          <Show when={part()}>
-            <section class='output'>
-              <h2>Part {part()}</h2>
-              {part() === 1 ? solution().Part1() : solution().Part2()}
-            </section>
-          </Show>
-        </>
+        <div class='btn-container'>
+          <button type='button' class='btn' onClick={() => setPart(1)}>
+            Part 1
+          </button>
+          <button type='button' class='btn' onClick={() => setPart(2)}>
+            Part 2
+          </button>
+        </div>
+        <Show when={part()}>
+          <section class='output'>
+            <h2>Part {part()}</h2>
+            {part() === 1 ? solution().Part1() : solution().Part2()}
+          </section>
+        </Show>
       </Show>
       <div class='btn-container nav-btns'>
         <A
