@@ -1,6 +1,6 @@
 .code-container {
   position: relative;
-  background: var(--color-bg-dark);
+  background: #272822;
   border: 0.1rem solid var(--color-primary);
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
