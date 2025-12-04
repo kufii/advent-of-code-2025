@@ -1,4 +1,4 @@
-import { sum } from '../../../util'
+import { sum } from '../util'
 import Answer from '../../Answer'
 import input from './input'
 

@@ -1,6 +1,6 @@
 import Answer from '../../Answer'
 import { createEffect, createSignal, onCleanup, Show } from 'solid-js'
-import { output2dArray } from '../../../util'
+import { output2dArray, setIntervalFast } from '../util'
 import input from './input'
 import Visualization from '../../Visualization'
 
@@ -55,13 +55,12 @@ export function Part2() {
     let rolls
     let removedPaper = 0
     let id: number
-    if (showVisualization()) setOutput(output2dArray(grid))
 
     const tick = () => {
+      if (showVisualization()) setOutput(output2dArray(grid))
       rolls = getAccessibleRolls(grid)
       removedPaper += rolls.length
       rolls.forEach(([x, y]) => (grid[y][x] = '.'))
-      if (showVisualization()) setOutput(output2dArray(grid))
       if (!rolls.length) {
         setResult(removedPaper)
         clearInterval(id)
@@ -70,7 +69,7 @@ export function Part2() {
       return true
     }
 
-    if (showVisualization()) id = setInterval(tick, 100)
+    if (showVisualization()) id = setIntervalFast(tick, 100)
     else
       while (tick()) {
         //

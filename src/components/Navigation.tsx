@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
 import { FiMenu } from 'solid-icons/fi'
-import { range } from '../util'
+import { range } from './solutions/util'
 import { A } from '@solidjs/router'
 import { AiFillGithub } from 'solid-icons/ai'
 import './Navigation.css'

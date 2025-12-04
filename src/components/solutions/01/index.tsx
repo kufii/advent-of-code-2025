@@ -1,4 +1,4 @@
-import { mod } from '../../../util'
+import { mod } from '../util'
 import input from './input'
 import Answer from '../../Answer'
 

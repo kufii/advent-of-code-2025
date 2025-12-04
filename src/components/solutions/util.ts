@@ -14,3 +14,8 @@ export const isEven = (n: number) => mod(n, 2) === 0
 
 export const output2dArray = (grid: any[][]) =>
   grid.map((line) => line.join('')).join('\n')
+
+export const setIntervalFast = (fn: () => any, interval: number) => {
+  fn()
+  return setInterval(fn, interval)
+}
