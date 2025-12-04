@@ -46,10 +46,12 @@ export default defineConfig([
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-extra-semi': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
       semi: 'off',
       'no-console': 'warn',
       'no-constant-condition': 'off',
       'no-void': ['error', { allowAsStatement: true }],
+      'no-empty': 'warn',
       'func-style': [
         'warn',
         'expression',
