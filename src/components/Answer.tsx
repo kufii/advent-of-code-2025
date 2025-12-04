@@ -2,7 +2,7 @@ import { FiClipboard } from 'solid-icons/fi'
 import './Answer.css'
 
 interface Props {
-  children: string | number
+  children: string | number | undefined | null
 }
 
 export default function Answer(props: Props) {
@@ -13,7 +13,7 @@ export default function Answer(props: Props) {
         type='button'
         class='btn btn-compact'
         onClick={() =>
-          navigator.clipboard?.writeText(props.children.toString())
+          navigator.clipboard?.writeText(props.children?.toString() ?? '')
         }
       >
         <FiClipboard size={24} />

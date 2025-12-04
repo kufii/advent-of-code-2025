@@ -1,5 +1,8 @@
 import Answer from '../../Answer'
+import { createEffect, createSignal, onCleanup, Show } from 'solid-js'
+import { output2dArray } from '../../../util'
 import input from './input'
+import Visualization from '../../Visualization'
 
 const parseInput = () => input.split('\n').map((line) => line.split(''))
 
@@ -42,18 +45,50 @@ export function Part1() {
 }
 
 export function Part2() {
-  const grid = parseInput()
-  let rolls
-  let removedPaper = 0
-  do {
-    rolls = getAccessibleRolls(grid)
-    removedPaper += rolls.length
-    rolls.forEach(([x, y]) => (grid[y][x] = '.'))
-  } while (rolls.length)
+  const [result, setResult] = createSignal(null as number | null)
+  const [output, setOutput] = createSignal('')
+  const [showVisualization, setShowVisualization] = createSignal(false)
+
+  createEffect(() => {
+    setResult(null)
+    const grid = parseInput()
+    let rolls
+    let removedPaper = 0
+    let id: number
+    if (showVisualization()) setOutput(output2dArray(grid))
+
+    const tick = () => {
+      rolls = getAccessibleRolls(grid)
+      removedPaper += rolls.length
+      rolls.forEach(([x, y]) => (grid[y][x] = '.'))
+      if (showVisualization()) setOutput(output2dArray(grid))
+      if (!rolls.length) {
+        setResult(removedPaper)
+        clearInterval(id)
+        return false
+      }
+      return true
+    }
+
+    if (showVisualization()) id = setInterval(tick, 100)
+    else
+      while (tick()) {
+        //
+      }
+
+    onCleanup(() => clearInterval(id))
+  })
 
   return (
-    <p>
-      The elves can remove <Answer>{removedPaper}</Answer> rolls of paper.
-    </p>
+    <>
+      <Show when={result() && !showVisualization()}>
+        <p>
+          The elves can remove <Answer>{result()}</Answer> rolls of paper.
+        </p>
+      </Show>
+      <Visualization show={showVisualization()} setShow={setShowVisualization}>
+        {output()}
+      </Visualization>
+    </>
   )
 }

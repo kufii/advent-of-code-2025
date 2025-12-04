@@ -1,0 +1,6 @@
+.visualization {
+  font-family: var(--font);
+  line-height: 1.37;
+  max-height: 40rem;
+  overflow: auto;
+}
