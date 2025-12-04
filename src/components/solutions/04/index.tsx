@@ -81,7 +81,7 @@ export function Part2() {
 
   return (
     <>
-      <Show when={result() && !showVisualization()}>
+      <Show when={result()}>
         <p>
           The elves can remove <Answer>{result()}</Answer> rolls of paper.
         </p>
