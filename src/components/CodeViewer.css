@@ -12,22 +12,22 @@
   margin: 0;
   padding: 1rem 0.8rem;
   overflow-x: auto;
-}
 
-.code:before {
-  content: attr(data-lang);
-  position: absolute;
-  right: 0.4rem;
-  top: 0.2rem;
-  color: var(--color-text-subdued);
-  font-size: 0.8rem;
-}
+  &:before {
+    content: attr(data-lang);
+    position: absolute;
+    right: 0.4rem;
+    top: 0.2rem;
+    color: var(--color-text-subdued);
+    font-size: 0.8rem;
+  }
 
-.code,
-.code code {
-  font-family:
-    'Operator Mono Ssm Lig', 'Operator Mono Lig', 'Operator Mono Ssm',
-    'Operator Mono', var(--font);
-  font-size: 0.9rem;
-  font-weight: var(--font-weight-book);
+  &,
+  code {
+    font-family:
+      'Operator Mono Ssm Lig', 'Operator Mono Lig', 'Operator Mono Ssm',
+      'Operator Mono', var(--font);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-book);
+  }
 }
