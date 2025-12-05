@@ -40,6 +40,7 @@ strong {
 }
 
 .btn {
+  user-select: none;
   align-items: center;
   background: none;
   border: 0.1em solid var(--color-primary);
@@ -59,6 +60,7 @@ strong {
 .btn:not([disabled]):hover,
 .btn:not([disabled]):focus-visible {
   filter: brightness(150%);
+  background: var(--color-bg-dark);
 }
 
 .btn[disabled],
@@ -75,4 +77,14 @@ strong {
 .btn-compact {
   border: none;
   padding: 0;
+}
+
+.btn-compact:not([disabled]):hover,
+.btn-compact:not([disabled]):focus-visible {
+  background: none;
+}
+
+.btn-circle {
+  padding: 0.4em;
+  border-radius: 50%;
 }

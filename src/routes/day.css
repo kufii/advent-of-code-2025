@@ -1,8 +1,8 @@
 .btn-container {
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
   margin-block: 1rem;
+  gap: 0.5rem;
 }
 
 .output {
@@ -16,4 +16,5 @@
 
 .nav-btns {
   justify-content: center;
+  gap: 1rem;
 }

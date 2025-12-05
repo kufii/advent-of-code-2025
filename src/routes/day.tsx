@@ -4,6 +4,7 @@ import NotFound from './[...404]'
 import days from '../components/solutions'
 import { createEffect, createMemo, createSignal, Show } from 'solid-js'
 import CodeViewer from '../components/CodeViewer'
+import { FiChevronLeft, FiChevronRight, FiExternalLink } from 'solid-icons/fi'
 import './day.css'
 
 export const filters: MatchFilters = {
@@ -28,7 +29,18 @@ export default function Day() {
   return (
     <Show when={day() >= 1 && day() <= 12} fallback={<NotFound />}>
       <Title>Advent of Code 2025 - Day {day()}</Title>
-      <h1>Day {day()}</h1>
+      <h1>
+        Day {day()}{' '}
+        <a
+          href={`https://adventofcode.com/2025/day/${day()}`}
+          class='btn btn-compact'
+          target='_blank'
+          rel='noopener noreferrer'
+          aria-label='View the problem on the Advent of Code website'
+        >
+          <FiExternalLink size={24} />
+        </a>
+      </h1>
       <Show when={solution()} fallback={<p>Solution not yet implemented.</p>}>
         <div class='btn-container'>
           <button type='button' class='btn' onClick={() => setPart(1)}>
@@ -58,19 +70,21 @@ export default function Day() {
       <div class='btn-container nav-btns'>
         <A
           href={`/day/${day() - 1}`}
-          class='btn btn-plain'
+          class='btn btn-plain btn-circle'
+          aria-label='Previous Day'
           aria-disabled={day() <= 1}
           tabIndex={day() <= 1 ? -1 : undefined}
         >
-          ← Previous Day
+          <FiChevronLeft size={32} />
         </A>
         <A
           href={`/day/${day() + 1}`}
-          class='btn btn-plain'
+          class='btn btn-plain btn-circle'
+          aria-label='Next Day'
           aria-disabled={day() >= 12}
           tabIndex={day() >= 12 ? -1 : undefined}
         >
-          Next Day →
+          <FiChevronRight size={32} />
         </A>
       </div>
     </Show>
