@@ -14,14 +14,14 @@ const isFresh = (id: number, freshIds: number[][]) =>
   freshIds.some(([start, end]) => id >= start && id <= end)
 
 const simplifyRanges = (ranges: number[][]) => {
-  ranges = ranges.sort(
+  const [first, ...sorted] = ranges.sort(
     sortBy(
       ([from]) => from,
       ([, to]) => to,
     ),
   )
-  const simplified = [ranges[0]]
-  for (const [start, end] of ranges.slice(1)) {
+  const simplified = [first]
+  for (const [start, end] of sorted) {
     const i = simplified.length - 1
     const lastEnd = simplified[i][1]
     if (start <= lastEnd) {
