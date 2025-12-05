@@ -13,7 +13,7 @@
   padding: 1rem 0.8rem;
   overflow-x: auto;
 
-  &:before {
+  &::before {
     content: attr(data-lang);
     position: absolute;
     right: 0.4rem;
