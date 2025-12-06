@@ -17,15 +17,16 @@ export default function Navigation(props: Props) {
         <button
           type='button'
           class='nav-btn nav-skip'
-          onClick={() =>
-            (
+          onClick={() => {
+            props.setMenuOpen(false)
+            ;(
               document
                 .getElementById('main-content')
                 ?.querySelector(
                   'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])',
                 ) as HTMLElement
             )?.focus()
-          }
+          }}
         >
           Skip nav
         </button>
