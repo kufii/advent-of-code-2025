@@ -16,7 +16,12 @@ export default function App() {
         <MetaProvider>
           <Title>Advent of Code 2025</Title>
           <Navigation menuOpen={menuOpen()} setMenuOpen={setMenuOpen} />
-          <main id='main-content' class='main' aria-disabled={menuOpen()}>
+          <main
+            id='main-content'
+            class='main'
+            aria-disabled={menuOpen()}
+            inert={menuOpen()}
+          >
             <Suspense>{props.children}</Suspense>
           </main>
         </MetaProvider>
