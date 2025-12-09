@@ -22,33 +22,6 @@ const getAllRects = (points: Point[]) =>
     )
     .sort(sortBy(desc((r) => r.area)))
 
-const orderPoints = (points: Point[]) => {
-  const [start] = points.sort(
-    sortBy(
-      (p) => p.x,
-      (p) => p.y,
-    ),
-  )
-
-  const ordered = new Set([start])
-  let current = start
-
-  while (ordered.size < points.length) {
-    const candidates = points
-      .filter((p) => !ordered.has(p))
-      .filter((p) => p.x === current.x || p.y === current.y)
-      .sort(sortBy((p) => calculateRect(current, p)))
-
-    if (candidates.length === 0) break
-
-    const next = candidates[0]
-    ordered.add(next)
-    current = next
-  }
-
-  return Array.from(ordered)
-}
-
 const lineIntersectsPerimeter = (a: Point, b: Point, perimeter: Point[]) => {
   for (let i = 0; i < perimeter.length; i++) {
     const current = perimeter[i]
@@ -114,7 +87,7 @@ export function Part1() {
 }
 
 export function Part2() {
-  const perimeter = orderPoints(parseInput())
+  const perimeter = parseInput()
   const rects = getAllRects(perimeter)
   const biggest = rects.find(({ a, b }) =>
     rectIsInPerimeter({ a, b }, perimeter),
