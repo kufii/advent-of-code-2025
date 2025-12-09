@@ -30,25 +30,23 @@ const orderPoints = (points: Point[]) => {
     ),
   )
 
-  const ordered = [start]
-  const visited = new Set([start])
+  const ordered = new Set([start])
   let current = start
 
-  while (ordered.length < points.length) {
+  while (ordered.size < points.length) {
     const candidates = points
-      .filter((p) => !visited.has(p))
+      .filter((p) => !ordered.has(p))
       .filter((p) => p.x === current.x || p.y === current.y)
       .sort(sortBy((p) => calculateRect(current, p)))
 
     if (candidates.length === 0) break
 
     const next = candidates[0]
-    ordered.push(next)
-    visited.add(next)
+    ordered.add(next)
     current = next
   }
 
-  return ordered
+  return Array.from(ordered)
 }
 
 const lineIntersectsPerimeter = (a: Point, b: Point, perimeter: Point[]) => {
