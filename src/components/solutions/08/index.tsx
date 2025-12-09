@@ -1,4 +1,4 @@
-import { createEffect, createSignal, Show } from 'solid-js'
+import { createEffect, createSignal, onCleanup, Show } from 'solid-js'
 import Answer from '../../Answer'
 import { desc, dfs, Point3, product, sortBy } from '../util'
 import input from './input'
@@ -71,17 +71,17 @@ export function Part2() {
   createEffect(() => {
     setResult(null)
 
-    setTimeout(() => {
+    const loop = function* () {
       const points = parseInput()
       const connections = getConnectionsMap(points)
       const distances = getAllDistances(points)
-
       const unvisited = new Set<string>(connections.keys())
 
-      let from: string = ''
-      let to: string = ''
+      let n = 0
       while (true) {
-        ;({ from, to } = distances.shift()!)
+        n++
+        if (n % 500 === 0) yield
+        const { from, to } = distances.shift()!
         connections.get(from)!.add(to)
         connections.get(to)!.add(from)
         unvisited.delete(from)
@@ -89,14 +89,19 @@ export function Part2() {
         if (unvisited.size === 0) {
           const circuit = dfs(from, (node) => [...connections.get(node)!])
           if (circuit.size === points.length) {
-            break
+            setResult(unKey(from).x * unKey(to).x)
+            return
           }
         }
       }
+    }
+    const gen = loop()
+    const interval = setInterval(
+      () => gen.next().done && clearInterval(interval),
+      0,
+    )
 
-      const result = unKey(from).x * unKey(to).x
-      setResult(result)
-    }, 0)
+    onCleanup(() => clearInterval(interval))
   })
 
   return (
