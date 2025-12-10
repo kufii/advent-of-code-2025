@@ -137,7 +137,6 @@ const configureJoltage = (joltage: number[], buttons: number[][]) => {
 
       if (freeVarListIdx === freeVariables.length) {
         let derivedCost = currentCost
-        let possible = true
 
         for (let i = pivotColumnIndices.length - 1; i >= 0; i--) {
           const pivotCol = pivotColumnIndices[i]
@@ -146,33 +145,21 @@ const configureJoltage = (joltage: number[], buttons: number[][]) => {
           let derivedValue = target[pivotRowIndex]
 
           for (let j = pivotCol + 1; j < cols; j++) {
-            if (Math.abs(matrix[pivotRowIndex][j]) > 1e-9) {
+            if (Math.abs(matrix[pivotRowIndex][j]) > 1e-9)
               derivedValue -= matrix[pivotRowIndex][j] * currentSolution[j]
-            }
           }
 
-          if (Math.abs(derivedValue - Math.round(derivedValue)) > 1e-4) {
-            possible = false
-            break
-          }
+          if (Math.abs(derivedValue - Math.round(derivedValue)) > 1e-4) return
+
           derivedValue = Math.round(derivedValue)
-
-          if (derivedValue < 0 || derivedValue > bounds[pivotCol]) {
-            possible = false
-            break
-          }
+          if (derivedValue < 0 || derivedValue > bounds[pivotCol]) return
 
           currentSolution[pivotCol] = derivedValue
           derivedCost += derivedValue
-          if (derivedCost >= minimumPresses) {
-            possible = false
-            break
-          }
+          if (derivedCost >= minimumPresses) return
         }
 
-        if (possible) {
-          minimumPresses = derivedCost
-        }
+        minimumPresses = derivedCost
 
         return
       }
