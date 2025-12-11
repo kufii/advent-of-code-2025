@@ -56,11 +56,15 @@ export function Part1() {
 export function Part2() {
   const devices = parseInput()
 
-  const pathsToFft = countPaths(devices, 'svr', 'fft')
-  const pathsToDac = countPaths(devices, 'fft', 'dac')
-  const pathsToOut = countPaths(devices, 'dac', 'out')
+  const svrToFft = countPaths(devices, 'svr', 'fft')
+  const fftToDac = countPaths(devices, 'fft', 'dac')
+  const dacToOut = countPaths(devices, 'dac', 'out')
+  const svrToDac = countPaths(devices, 'svr', 'dac')
+  const dacToFft = countPaths(devices, 'dac', 'fft')
+  const fftToOut = countPaths(devices, 'fft', 'out')
 
-  const totalPaths = pathsToFft * pathsToDac * pathsToOut
+  const totalPaths =
+    svrToFft * fftToDac * dacToOut + svrToDac * dacToFft * fftToOut
 
   return (
     <p>

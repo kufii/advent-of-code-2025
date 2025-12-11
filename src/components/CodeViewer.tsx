@@ -21,7 +21,10 @@ export default function CodeViewer(props: Props) {
       const response = await fetch(getJsDelivrUrl(), { cache: 'no-cache' })
       const text = await response.text()
       setCode(text)
-      setTimeout(() => highlightElement(document.getElementById('code')!), 0)
+      setTimeout(() => {
+        const code = document.getElementById('code')
+        if (code) highlightElement(code)
+      }, 0)
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Error fetching code:', err)
