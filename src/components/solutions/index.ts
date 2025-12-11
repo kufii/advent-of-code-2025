@@ -9,6 +9,7 @@ import * as day7 from './07'
 import * as day8 from './08'
 import * as day9 from './09'
 import * as day10 from './10'
+import * as day11 from './11'
 
 interface Day {
   Part1: () => JSX.Element
@@ -26,4 +27,5 @@ export default [
   day8,
   day9,
   day10,
+  day11,
 ] as Day[]
