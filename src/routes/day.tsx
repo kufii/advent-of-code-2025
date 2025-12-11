@@ -15,15 +15,15 @@ export default function Day() {
   const params = useParams()
   const [part, setPart] = createSignal(0)
   const [showCode, setShowCode] = createSignal(false)
+  const [day, setDay] = createSignal(0)
   createEffect(() => {
-    void params.id
     if (document.activeElement?.ariaDisabled === 'true') {
       ;(document.activeElement as HTMLElement).blur()
     }
+    setDay(Number(params.id))
     setPart(0)
     setShowCode(false)
   })
-  const day = createMemo(() => Number(params.id))
   const solution = createMemo(() => days[day() - 1])
 
   return (
