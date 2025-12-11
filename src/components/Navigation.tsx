@@ -70,6 +70,7 @@ export default function Navigation(props: Props) {
         aria-modal='true'
         aria-hidden={!props.menuOpen}
         onClick={() => props.setMenuOpen(false)}
+        inert={!props.menuOpen}
       >
         <nav onClick={(e) => e.stopImmediatePropagation()}>
           <ul>
@@ -80,7 +81,6 @@ export default function Navigation(props: Props) {
                     href={`/day/${day}`}
                     activeClass='active'
                     onClick={() => props.setMenuOpen(false)}
-                    tabIndex={props.menuOpen ? undefined : -1}
                   >
                     Day {day}
                   </A>
