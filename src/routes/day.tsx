@@ -46,9 +46,11 @@ export default function Day() {
           <button type='button' class='btn' onClick={() => setPart(1)}>
             Part 1
           </button>
-          <button type='button' class='btn' onClick={() => setPart(2)}>
-            Part 2
-          </button>
+          <Show when={solution().Part2}>
+            <button type='button' class='btn' onClick={() => setPart(2)}>
+              Part 2
+            </button>
+          </Show>
           <button
             type='button'
             class='btn btn-plain'
@@ -63,7 +65,7 @@ export default function Day() {
         <Show when={part()}>
           <section class='output'>
             <h2>Part {part()}</h2>
-            {part() === 1 ? solution().Part1() : solution().Part2()}
+            {part() === 1 ? solution().Part1() : solution().Part2?.()}
           </section>
         </Show>
       </Show>
